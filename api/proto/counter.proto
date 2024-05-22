@@ -1,0 +1,35 @@
+syntax = "proto3";
+package api;
+option go_package = "pkg/api";
+
+service Count {
+    rpc Change(ChangeRequest) returns (CountResponse) {}
+    rpc Score(CountRequest) returns (CountResponse) {}
+    rpc AddCounter(NameCountRequest) returns (ReadyCountResponse) {}
+    rpc Delete(CountRequest) returns (ReadyDeleteResponse) {}
+}
+
+message NameCountRequest {
+    string name = 1;
+}
+
+message ReadyDeleteResponse {
+    string counterDelete = 1;
+}
+
+message ReadyCountResponse {
+    string name = 1;
+}
+
+message CountRequest {
+    int32 countid = 1;
+}
+
+message ChangeRequest {
+    int32 countid = 1;
+    int32 x = 2;
+}
+
+message CountResponse {
+    int32 result = 1;
+}
